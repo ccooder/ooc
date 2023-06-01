@@ -8,11 +8,10 @@ int main() {
   void *s = new(Set);
   void *s1 = new(Set);
   void *a = add(s, new(Object));
-  void *b = add(s1, new(Object));
-  void *c = add(s1, a);
-  printf("c=%d\n", *(int *)c);
-  printf("b=%d\n", *(int *)b);
-  printf("a=%d\n", *(int *)a);
+  void *b = add(s, new(Object));
+  void *c = add(s1, new(Object));
+
+  printf("set count:%d\n", count(s));
 
   if (contains(s, a) && contains(s, b))
     puts("ok");
