@@ -8,6 +8,7 @@ int main() {
   void *a = new(String, "a");
   void *aa = clone(a);
   void *b = new(String, "b");
+  void *c = new(String, "c");
   printf("sizeOf(a) == %zu\n", sizeOf(a));
   if (differ(a, b)) {
     puts("ok");
