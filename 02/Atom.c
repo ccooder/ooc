@@ -19,10 +19,6 @@ static struct String *ring;
 static void *String_ctor(void *_self, va_list *app) {
   struct String *self = _self;
   const char *text = va_arg(*app, const char *);
-  self->text = malloc(strlen(text) + 1);
-  assert(self->text);
-  strcpy(self->text, text);
-
   if (ring) {
     struct String *p = ring;
     do {
@@ -38,6 +34,10 @@ static void *String_ctor(void *_self, va_list *app) {
   self->next = ring->next;
   ring->next = self;
   self->count = 1;
+
+  self->text = malloc(strlen(text) + 1);
+  assert(self->text);
+  strcpy(self->text, text);
   return self;
 }
 
@@ -59,6 +59,7 @@ static void *String_dtor(void *_self) {
     }
     p->next = self->next;
   }
+  free(self -> text), self -> text = NULL;
   return self;
 }
 
